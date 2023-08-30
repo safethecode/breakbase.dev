@@ -1,0 +1,23 @@
+module.exports = {
+  trailingComma: 'all',
+  printWidth: 80,
+  useTabs: false,
+  tabWidth: 2,
+  importOrder: [
+    "^(next/(.*)$)|^(next$)",
+    "^(react/(.*)$)|^(react$)",
+    "<THIRD_PARTY_MODULES>",
+    "^@/components/(.*)$|^components/(.*)$",
+    "^#/lib/(.*)$",
+    "^@/styles/(.*)$",
+    "^[./]",
+  ],
+  importOrderSeparation: false,
+  importOrderSortSpecifiers: true,
+  singleQuote: true,
+  bracketSpacing: true,
+  semi: true,
+  arrowParens: 'always',
+  endOfLine: 'auto',
+  jsxSingleQuote: false, 
+}
