@@ -2354,6 +2354,11 @@ jsonc-parser@^3.2.0:
     object.assign "^4.1.4"
     object.values "^1.1.6"
 
+ky@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/ky/-/ky-1.0.1.tgz#3b167f0bf75097240ffc5505e6b4f7b3be8161d0"
+  integrity sha512-UvcwpQO0LOuZwG0Ti3VDo6w57KYt+r4bWEYlNaMt82hgyFtse86QtOGum1RzsZni31FndXQl6NvtDArfunt2JQ==
+
 language-subtag-registry@~0.3.2:
   version "0.3.22"
   resolved "https://registry.npmjs.org/language-subtag-registry/-/language-subtag-registry-0.3.22.tgz"
