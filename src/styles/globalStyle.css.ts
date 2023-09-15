@@ -144,7 +144,7 @@ globalStyle('html, body', {
   width: '100%',
   height: '100%',
   fontFamily: `
-    var(--font-inter),
+    var(--font-work-sans),
     -apple-system,
     BlinkMacSystemFont,
     Segoe UI,

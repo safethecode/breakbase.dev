@@ -22,10 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`
-          ${WorkSansFontStyle.variable}
-          ${BebasNenuFontStyle.variable}
-        `}
+        className={`${WorkSansFontStyle.variable} ${BebasNenuFontStyle.variable}`}
       >
         <Providers>{children}</Providers>
       </body>
