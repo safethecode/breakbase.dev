@@ -1,5 +1,8 @@
 import { constructMetadata } from '@/utils/next';
-import { InterFontStyle } from '@/styles/globalFontsStyle';
+import {
+  WorkSansFontStyle,
+  BebasNenuFontStyle,
+} from '@/styles/globalFontsStyle';
 
 import Providers from './providers';
 
@@ -18,7 +21,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={InterFontStyle.variable}>
+      <body
+        className={`
+          ${WorkSansFontStyle.variable}
+          ${BebasNenuFontStyle.variable}
+        `}
+      >
         <Providers>{children}</Providers>
       </body>
     </html>
