@@ -4,5 +4,5 @@ export const count = style({
   fontSize: '24px',
   fontWeight: 600,
   textAlign: 'center',
-  color: '#fff',
+  color: 'rgba(255, 255, 255, 0.5)',
 });
