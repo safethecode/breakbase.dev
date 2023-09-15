@@ -2,6 +2,7 @@ import { constructMetadata } from '@/utils/next';
 import {
   WorkSansFontStyle,
   BebasNenuFontStyle,
+  PretendardFontStyle,
 } from '@/styles/globalFontsStyle';
 
 import Providers from './providers';
@@ -21,9 +22,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body
-        className={`${WorkSansFontStyle.variable} ${BebasNenuFontStyle.variable}`}
-      >
+      <body className={PretendardFontStyle.className}>
         <Providers>{children}</Providers>
       </body>
     </html>
