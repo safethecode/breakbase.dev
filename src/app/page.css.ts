@@ -12,6 +12,7 @@ export const wrap = style({
 export const heroHeader = style({
   display: 'flex',
   flexDirection: 'column',
+  alignItems: 'center',
   fontSize: '36px',
   fontWeight: 800,
   textAlign: 'center',
@@ -40,12 +41,11 @@ export const input = style({
   width: '100%',
   borderRadius: '8px',
   backgroundColor: '#11111190',
-  boxShadow: 'inset 0 0 0 1px #222',
+  border: '1px solid #222',
   padding: '16px',
   fontSize: '16px',
   color: '#ffffff90',
   outline: 'none',
-  border: 'none',
   transition: 'box-shadow 0.2s',
   fontWeight: 600,
 
@@ -54,7 +54,7 @@ export const input = style({
   },
 
   ':hover': {
-    boxShadow: 'inset 0 0 0 1px #333',
+    border: '1px solid #222',
   },
 });
 
@@ -63,6 +63,7 @@ export const footer = style({
   fontSize: '12px',
   lineHeight: '24px',
   color: 'rgba(255, 255, 255, 0.3)',
+  paddingBottom: '24px',
 });
 
 export const anchor = style({

@@ -12,6 +12,7 @@ const button = style({
   gap: '4px',
   appearance: 'button',
   cursor: 'pointer',
+  color: '#000',
 
   transition: 'background-color 0.15s',
 

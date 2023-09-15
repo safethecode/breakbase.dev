@@ -22,6 +22,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <meta name="theme-color" content="#000" />
       <body className={PretendardFontStyle.className}>
         <Providers>{children}</Providers>
       </body>
