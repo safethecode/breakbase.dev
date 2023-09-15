@@ -13,10 +13,11 @@ export const Button = ({
   children,
   variant,
   rightIcon,
+  onClick,
   ...props
 }: ButtonProps) => {
   return (
-    <button className={buttonVariant[variant]} {...props}>
+    <button className={buttonVariant[variant]} onClick={onClick} {...props}>
       {children}
       {rightIcon}
     </button>
