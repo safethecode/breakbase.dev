@@ -157,4 +157,5 @@ globalStyle('html, body', {
   margin: 0,
   padding: 0,
   WebkitFontSmoothing: 'antialiased',
+  background: '#000',
 });
