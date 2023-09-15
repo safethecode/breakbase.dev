@@ -52,7 +52,9 @@ export default function Examples() {
           title="이메일 입력 필드"
           required
         />
-        <Button variant="primary">구독하기</Button>
+        <Button variant="primary" onClick={newSubscriber}>
+          구독하기
+        </Button>
         <footer className={style.footer}>
           <p>
             본 뉴스레터는 2023년 09월 18일부터 오전 9시를 기준으로 월요일마다
