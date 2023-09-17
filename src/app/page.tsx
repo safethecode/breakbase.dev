@@ -8,11 +8,8 @@ import { newSubscribeSlackMessage } from '@/contents';
 import { Button, Card, MondayCount } from '@/components';
 
 export default function Examples() {
-  const SLACK_WEBHOOK_URL =
-    'https://hooks.slack.com/services/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';
-
   const newSubscriber = async () => {
-    await ky.post(SLACK_WEBHOOK_URL, {
+    await ky.post('/api/subscribe/', {
       json: newSubscribeSlackMessage({
         authorName: 'Aaron Son',
         authorEmail: 'aaron.son@aybridge.co',
