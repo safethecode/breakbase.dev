@@ -14,6 +14,7 @@
     "pre-commit": "lint-staged"
   },
   "dependencies": {
+    "@react-email/button": "0.0.10",
     "@supabase/supabase-js": "^2.33.2",
     "@vanilla-extract/css": "^1.12.0",
     "ky": "^1.0.1",
