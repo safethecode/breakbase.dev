@@ -5,6 +5,8 @@ import {
   PretendardFontStyle,
 } from '@/styles/globalFontsStyle';
 
+import { Analytics } from '@vercel/analytics/react';
+
 import Providers from './providers';
 
 import '@/styles/globalStyle.css';
@@ -27,6 +29,7 @@ export default function RootLayout({
       <body className={PretendardFontStyle.className}>
         <Providers>{children}</Providers>
       </body>
+      <Analytics />
     </html>
   );
 }
