@@ -11,7 +11,7 @@ export async function POST(request: NextRequest) {
 
   const requestBody = await request.json();
 
-  const content = await fetch(SLACK_WEBHOOK_URL, {
+  await fetch(SLACK_WEBHOOK_URL, {
     method: 'POST',
     body: JSON.stringify(requestBody.message),
   });
