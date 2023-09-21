@@ -28,9 +28,8 @@ const newSubscribeSlackMessage = ({
           short: false,
         },
       ],
-      footer: 'A6E Newsletter',
-      footer_icon:
-        'https://github.com/safethecode/www-v2/assets/59228569/22196085-e0df-48ad-a67a-09b156fd5004',
+      footer: '핏쨔 뉴스레터',
+      footer_icon: 'https://fitzza.xyz/_static/icon-pizza.png',
     },
   ],
 });
