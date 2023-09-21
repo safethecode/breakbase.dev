@@ -88,6 +88,30 @@ export default function Examples() {
       setSubscribed(true);
     }
   }, [subscribed, loading]);
+
+  useEffect(() => {
+    // This code will be executed after the component has rendered
+
+    // Add the Google Analytics script to the document
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=G-8T66DN5XBE';
+    document.head.appendChild(script);
+
+    // Initialize Google Analytics
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      window.dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'G-8T66DN5XBE');
+
+    // Clean up the script tag when the component unmounts
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, []);
+
   return (
     <main className={style.wrap}>
       <div className={style.inner}>
