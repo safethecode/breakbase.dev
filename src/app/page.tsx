@@ -68,6 +68,10 @@ export default function Examples() {
     });
   };
 
+  const handleComingSoon = () => {
+    toast.loading('아직 준비 중이에요! 조금만 기다려주세요 🙈');
+  };
+
   useEffect(() => {
     (confettiRef.current as JSConfetti) = new JSConfetti();
   }, []);
@@ -89,7 +93,7 @@ export default function Examples() {
           </Balancer>
         </h1>
         <MondayCount />
-        <Card />
+        <Card onClick={handleComingSoon} />
         <h1 className={style.heroHeader}>
           <span className={style.heroHeaderLabel}>상시 모집 중</span>
         </h1>
@@ -118,13 +122,15 @@ export default function Examples() {
         </Button>
         <footer className={style.footer}>
           <p>
-            본 뉴스레터는 2023년 09월 18일부터 오전 9시를 기준으로 월요일마다
+            본 뉴스레터는 2023년 09월 25일부터 오전 10시를 기준으로 월요일마다
             발송되는 뉴스레터입니다. 기술적인 부분과 기획, 디자인, 스타트업 등
             다양한 주제로 뉴스레터는 발송됩니다. 뉴스레터 관련 문의는
             <a className={style.anchor} href="mailto:support@aybridge.co">
               이메일
             </a>
-            로 문의해주세요.
+            로 문의해주세요. 본 뉴스레터를 구독하는 것은 개인정보 수집과 서비스
+            이용 약관에 동의하는 것을 의미합니다. 다만, 마케팅 목적으로 사용되는
+            것은 아닙니다. 해당 부분은 추후 동의를 받도록 할 것입니다.
           </p>
         </footer>
       </div>
