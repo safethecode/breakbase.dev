@@ -1,9 +1,13 @@
+import { Resend } from 'resend';
 import { NextRequest, NextResponse } from 'next/server';
 import { supabase } from '@/utils/supabase';
+import KoalaWelcomeEmail from '@/contents/welcome';
 
 export async function POST(request: NextRequest) {
   const SLACK_WEBHOOK_URL =
     'https://hooks.slack.com/services/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';
+
+  const resend = new Resend(process.env.RESEND_API_KEY as string);
 
   const requestBody = await request.json();
 
@@ -12,7 +16,7 @@ export async function POST(request: NextRequest) {
     body: JSON.stringify(requestBody.message),
   });
 
-  const { data, error } = await supabase
+  await supabase
     .from('subscribe_users')
     .insert([
       {
@@ -24,7 +28,12 @@ export async function POST(request: NextRequest) {
     ])
     .select();
 
-  console.log(data, error);
+  await resend.emails.send({
+    from: '핏쨔 <no-reply@fitzza.xyz>',
+    to: requestBody.userInfo.email,
+    subject: `${requestBody.userInfo.name}님! 핏쨔에 오신 것을 환영합니다 🍕`,
+    react: KoalaWelcomeEmail({ userFirstname: requestBody.userInfo.name }),
+  });
 
   return NextResponse.json(content.json());
 }
