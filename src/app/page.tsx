@@ -126,7 +126,7 @@ export default function Examples() {
           onClick={debouncedNewSubscriber}
           disabled={loading}
         >
-          {loading ? '이미 구독하셨어요!' : '구독하기'}
+          구독하기
         </Button>
         <footer className={style.footer}>
           <p>
