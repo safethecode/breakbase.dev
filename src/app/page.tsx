@@ -10,6 +10,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Toaster, toast } from 'sonner';
 import { newSubscribeSlackMessage } from '@/contents';
 import { Button, Card, MondayCount } from '@/components';
+import useDebounce from '@/hooks/useDebounce';
 
 export default function Examples() {
   const confettiRef = useRef<JSConfetti>(null);
@@ -59,6 +60,8 @@ export default function Examples() {
       }
     }
   };
+
+  const debouncedNewSubscriber = useDebounce(newSubscriber, 500);
 
   const handleSubscribe = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -117,7 +120,7 @@ export default function Examples() {
           required
           onChange={handleSubscribe}
         />
-        <Button variant="primary" onClick={newSubscriber}>
+        <Button variant="primary" onClick={debouncedNewSubscriber}>
           구독하기
         </Button>
         <footer className={style.footer}>
