@@ -14,7 +14,7 @@
     "pre-commit": "lint-staged"
   },
   "dependencies": {
-    "@react-email/button": "0.0.10",
+    "@react-email/components": "^0.0.7",
     "@supabase/supabase-js": "^2.33.2",
     "@vanilla-extract/css": "^1.12.0",
     "js-confetti": "^0.11.0",
