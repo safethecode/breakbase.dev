@@ -77,7 +77,7 @@ export default function Examples() {
     (confettiRef.current as JSConfetti) = new JSConfetti();
     const isSubscribed = localStorage.getItem('subscribed');
 
-    if (isSubscribed) {
+    if (isSubscribed === 'true') {
       setSubscribed(true);
     }
   }, []);
