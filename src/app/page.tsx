@@ -21,14 +21,25 @@ export default function Examples() {
   });
 
   const [subscribed, setSubscribed] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const newSubscriber = async () => {
+    setLoading(true);
+
     const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
     if (subscribe.email && !emailRegex.test(subscribe.email)) {
       toast.error('올바른 이메일 주소를 입력해주세요!');
     } else {
       if (subscribe.name && subscribe.email) {
+        confettiRef.current?.addConfetti({
+          emojis: ['😘', '🥰', '❤️', '✅', '🎉'],
+          emojiSize: 150,
+          confettiNumber: 30,
+        });
+
+        toast.success('구독해주셔서 감사해요 🙈 매주 월요일에 뵐게요 +_+');
+
         await ky.post('/api/subscribe/', {
           json: {
             message: newSubscribeSlackMessage({
@@ -45,21 +56,14 @@ export default function Examples() {
           },
         });
         localStorage.setItem('subscribed', 'true');
-
-        confettiRef.current?.addConfetti({
-          emojis: ['😘', '🥰', '❤️', '✅', '🎉'],
-          emojiSize: 150,
-          confettiNumber: 30,
-        });
-
-        toast.success('구독해주셔서 감사해요 🙈 매주 월요일에 뵐게요 +_+');
+        setLoading(false);
       } else {
         toast.error('이름과 이메일 주소를 입력해주세요!');
       }
     }
   };
 
-  const debouncedNewSubscriber = useDebounce(newSubscriber, 500);
+  const debouncedNewSubscriber = useDebounce(newSubscriber, 1000);
 
   const handleSubscribe = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -75,12 +79,15 @@ export default function Examples() {
 
   useEffect(() => {
     (confettiRef.current as JSConfetti) = new JSConfetti();
+  }, []);
+
+  useEffect(() => {
     const isSubscribed = localStorage.getItem('subscribed');
 
     if (isSubscribed === 'true') {
       setSubscribed(true);
     }
-  }, []);
+  }, [subscribed, loading]);
   return (
     <main className={style.wrap}>
       <div className={style.inner}>
@@ -124,9 +131,9 @@ export default function Examples() {
           onChange={handleSubscribe}
         />
         <Button
-          variant="primary"
+          variant={subscribed ? 'outline' : 'primary'}
           onClick={debouncedNewSubscriber}
-          disabled={subscribed}
+          disabled={subscribed || loading}
         >
           {subscribed ? '이미 구독하셨어요!' : '구독하기'}
         </Button>
