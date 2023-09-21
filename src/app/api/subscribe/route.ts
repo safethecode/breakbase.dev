@@ -4,8 +4,7 @@ import { supabase } from '@/utils/supabase';
 import KoalaWelcomeEmail from '@/contents/welcome';
 
 export async function POST(request: NextRequest) {
-  const SLACK_WEBHOOK_URL =
-    'https://hooks.slack.com/services/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';
+  const SLACK_WEBHOOK_URL = process.env.SLACK_WEBHOOK_KEY as string;
 
   const resend = new Resend(process.env.RESEND_API_KEY as string);
 
