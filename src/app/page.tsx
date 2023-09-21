@@ -2,31 +2,61 @@
 
 import ky from 'ky';
 import Balancer from 'react-wrap-balancer';
+import JSConfetti from 'js-confetti';
+
 import * as style from './page.css';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { Toaster, toast } from 'sonner';
 import { newSubscribeSlackMessage } from '@/contents';
 import { Button, Card, MondayCount } from '@/components';
 
 export default function Examples() {
+  const confettiRef = useRef<JSConfetti>(null);
+
   const [subscribe, setSubscribe] = useState({
     name: '',
     email: '',
   });
 
   const newSubscriber = async () => {
-    if (subscribe.name && subscribe.email) {
-      await ky.post('/api/subscribe/', {
-        json: newSubscribeSlackMessage({
-          authorName: subscribe.name,
-          authorEmail: subscribe.email,
-        }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+
+    if (subscribe.email && !emailRegex.test(subscribe.email)) {
+      toast.error('올바른 이메일 주소를 입력해주세요!');
     } else {
-      alert('이름과 이메일을 입력해주세요.');
+      if (subscribe.name && subscribe.email) {
+        await ky
+          .post('/api/subscribe/', {
+            json: {
+              message: newSubscribeSlackMessage({
+                authorName: subscribe.name,
+                authorEmail: subscribe.email,
+              }),
+              userInfo: {
+                name: subscribe.name,
+                email: subscribe.email,
+              },
+            },
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          })
+          .then(() => {
+            confettiRef.current?.addConfetti({
+              emojis: ['😘', '🥰', '❤️', '✅', '🎉'],
+              emojiSize: 150,
+              confettiNumber: 30,
+            });
+
+            toast.success('구독해주셔서 감사해요 🙈 매주 월요일에 뵐게요 +_+');
+          })
+          .catch(() => {
+            toast.error('구독 신청에 실패했어요. 메일로 문의해주세요!');
+          });
+      } else {
+        toast.error('이름과 이메일 주소를 입력해주세요!');
+      }
     }
   };
 
@@ -37,11 +67,23 @@ export default function Examples() {
       [name]: value,
     });
   };
+
+  useEffect(() => {
+    (confettiRef.current as JSConfetti) = new JSConfetti();
+  }, []);
   return (
     <main className={style.wrap}>
       <div className={style.inner}>
         <h1 className={style.heroHeader}>
-          <span className={style.heroHeaderLabel}>뉴스레터</span>
+          <span className={style.heroHeaderLabel}>
+            <img
+              src="/_static/icon-pizza.png"
+              width={24}
+              height={24}
+              alt="pizza"
+            />
+            핏짜
+          </span>
           <Balancer as="span">
             업무에 집중해야 하는 개발자를 위한 뉴스레터
           </Balancer>
@@ -86,6 +128,7 @@ export default function Examples() {
           </p>
         </footer>
       </div>
+      <Toaster />
     </main>
   );
 }

@@ -10,8 +10,8 @@ import Providers from './providers';
 import '@/styles/globalStyle.css';
 
 export const metadata = constructMetadata({
-  title: '오마카세 — 개발자를 위한 뉴스레터',
-  description: '오마카세 — 업무에 집중해야 하는 개발자를 위한 뉴스레터입니다.',
+  title: '핏짜 — 개발자를 위한 뉴스레터',
+  description: '핏짜 — 업무에 집중해야 하는 개발자를 위한 뉴스레터입니다.',
   keywords: ['newsletter', 'developer', 'frontend'],
 });
 

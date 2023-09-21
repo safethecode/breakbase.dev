@@ -30,7 +30,7 @@ export const comingSoon = style({
   WebkitTextFillColor: 'transparent',
   textAlign: 'center',
   backgroundImage:
-    'linear-gradient(90deg, rgba(255, 255, 255, 0) 10%, hsl(128, 66%, 80%) 50%, rgba(255, 255, 255, 0) 90%)',
+    'linear-gradient(90deg, rgba(255, 255, 255, 0) 10%, rgb(255, 146, 67) 50%, rgba(255, 255, 255, 0) 90%)',
   WebkitBackgroundClip: 'text',
   color: 'transparent',
 });

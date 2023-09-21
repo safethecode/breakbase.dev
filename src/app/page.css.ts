@@ -23,10 +23,13 @@ export const heroHeader = style({
 });
 
 export const heroHeaderLabel = style({
+  display: 'flex',
+  alignItems: 'center',
   fontSize: '24px',
   textAlign: 'center',
   fontWeight: 700,
-  color: 'hsl(128, 66%, 80%)',
+  color: 'rgb(255, 146, 67)',
+  gap: '8px',
 });
 
 export const inner = style({
