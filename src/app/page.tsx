@@ -20,7 +20,6 @@ export default function Examples() {
     email: '',
   });
 
-  const [subscribed, setSubscribed] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const newSubscriber = async () => {
@@ -80,14 +79,6 @@ export default function Examples() {
   useEffect(() => {
     (confettiRef.current as JSConfetti) = new JSConfetti();
   }, []);
-
-  useEffect(() => {
-    const isSubscribed = localStorage.getItem('subscribed');
-
-    if (isSubscribed === 'true') {
-      setSubscribed(true);
-    }
-  }, [subscribed, loading]);
   return (
     <main className={style.wrap}>
       <div className={style.inner}>
@@ -131,11 +122,11 @@ export default function Examples() {
           onChange={handleSubscribe}
         />
         <Button
-          variant={subscribed ? 'outline' : 'primary'}
+          variant="primary"
           onClick={debouncedNewSubscriber}
-          disabled={subscribed || loading}
+          disabled={loading}
         >
-          {subscribed ? '이미 구독하셨어요!' : '구독하기'}
+          {loading ? '이미 구독하셨어요!' : '구독하기'}
         </Button>
         <footer className={style.footer}>
           <p>
