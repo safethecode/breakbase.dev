@@ -13,8 +13,7 @@ export const metadata = constructMetadata({
   title: '핏짜 — 개발자를 위한 뉴스레터',
   description: '핏짜 — 업무에 집중해야 하는 개발자를 위한 뉴스레터입니다.',
   keywords: ['newsletter', 'developer', 'frontend'],
-  image:
-    'https://www.fitzza.xyz/_static/opengraph/bg-opengraph.png',
+  image: 'https://www.fitzza.xyz/_static/opengraph/bg-opengraph.png',
 });
 
 export default function RootLayout({
