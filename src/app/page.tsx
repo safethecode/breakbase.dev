@@ -20,6 +20,8 @@ export default function Examples() {
     email: '',
   });
 
+  const [subscribed, setSubscribed] = useState(false);
+
   const newSubscriber = async () => {
     const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
@@ -27,31 +29,30 @@ export default function Examples() {
       toast.error('올바른 이메일 주소를 입력해주세요!');
     } else {
       if (subscribe.name && subscribe.email) {
-        await ky
-          .post('/api/subscribe/', {
-            json: {
-              message: newSubscribeSlackMessage({
-                authorName: subscribe.name,
-                authorEmail: subscribe.email,
-              }),
-              userInfo: {
-                name: subscribe.name,
-                email: subscribe.email,
-              },
+        await ky.post('/api/subscribe/', {
+          json: {
+            message: newSubscribeSlackMessage({
+              authorName: subscribe.name,
+              authorEmail: subscribe.email,
+            }),
+            userInfo: {
+              name: subscribe.name,
+              email: subscribe.email,
             },
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          })
-          .then(() => {
-            confettiRef.current?.addConfetti({
-              emojis: ['😘', '🥰', '❤️', '✅', '🎉'],
-              emojiSize: 150,
-              confettiNumber: 30,
-            });
+          },
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        localStorage.setItem('subscribed', 'true');
 
-            toast.success('구독해주셔서 감사해요 🙈 매주 월요일에 뵐게요 +_+');
-          });
+        confettiRef.current?.addConfetti({
+          emojis: ['😘', '🥰', '❤️', '✅', '🎉'],
+          emojiSize: 150,
+          confettiNumber: 30,
+        });
+
+        toast.success('구독해주셔서 감사해요 🙈 매주 월요일에 뵐게요 +_+');
       } else {
         toast.error('이름과 이메일 주소를 입력해주세요!');
       }
@@ -74,6 +75,11 @@ export default function Examples() {
 
   useEffect(() => {
     (confettiRef.current as JSConfetti) = new JSConfetti();
+    const isSubscribed = localStorage.getItem('subscribed');
+
+    if (isSubscribed) {
+      setSubscribed(true);
+    }
   }, []);
   return (
     <main className={style.wrap}>
@@ -117,8 +123,12 @@ export default function Examples() {
           required
           onChange={handleSubscribe}
         />
-        <Button variant="primary" onClick={debouncedNewSubscriber}>
-          구독하기
+        <Button
+          variant="primary"
+          onClick={debouncedNewSubscriber}
+          disabled={subscribed}
+        >
+          {subscribed ? '이미 구독하셨어요!' : '구독하기'}
         </Button>
         <footer className={style.footer}>
           <p>
