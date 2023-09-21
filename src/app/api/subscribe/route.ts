@@ -29,9 +29,9 @@ export async function POST(request: NextRequest) {
     .select();
 
   await resend.emails.send({
-    from: '핏쨔 <no-reply@fitzza.xyz>',
+    from: '핏짜 <no-reply@fitzza.xyz>',
     to: requestBody.userInfo.email,
-    subject: `${requestBody.userInfo.name}님! 핏쨔에 오신 것을 환영합니다 🍕`,
+    subject: `${requestBody.userInfo.name}님! 핏짜에 오신 것을 환영합니다 🍕`,
     react: KoalaWelcomeEmail({ userFirstname: requestBody.userInfo.name }),
   });
 

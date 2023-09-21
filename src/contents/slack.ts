@@ -28,7 +28,7 @@ const newSubscribeSlackMessage = ({
           short: false,
         },
       ],
-      footer: '핏쨔 뉴스레터',
+      footer: '핏짜 뉴스레터',
       footer_icon: 'https://fitzza.xyz/_static/icon-pizza.png',
     },
   ],
