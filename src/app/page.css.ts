@@ -6,6 +6,7 @@ export const wrap = style({
   alignItems: 'center',
   width: '100%',
   padding: '16px 24px',
+  WebkitFontSmoothing: 'antialiased',
 });
 
 export const heroHeader = style({
