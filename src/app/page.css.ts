@@ -5,7 +5,6 @@ export const wrap = style({
   flexDirection: 'column',
   alignItems: 'center',
   width: '100%',
-  height: '100%',
   padding: '16px 24px',
 });
 
