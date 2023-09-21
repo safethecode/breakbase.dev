@@ -35,5 +35,5 @@ export async function POST(request: NextRequest) {
     react: KoalaWelcomeEmail({ userFirstname: requestBody.userInfo.name }),
   });
 
-  return NextResponse.json(content.json());
+  return NextResponse.json({ status: 200 });
 }
