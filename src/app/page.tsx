@@ -51,9 +51,6 @@ export default function Examples() {
             });
 
             toast.success('구독해주셔서 감사해요 🙈 매주 월요일에 뵐게요 +_+');
-          })
-          .catch(() => {
-            toast.error('구독 신청에 실패했어요. 메일로 문의해주세요!');
           });
       } else {
         toast.error('이름과 이메일 주소를 입력해주세요!');
