@@ -19,7 +19,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'eslint-config-prettier',
     'plugin:react/recommended',
-    'next/core-web-vitals'
+    'next/core-web-vitals',
   ],
   plugins: ['@typescript-eslint', 'import', 'prettier', 'react', 'react-hooks'],
   settings: { react: { version: 'detect' } },
@@ -120,5 +120,7 @@ module.exports = {
 
     '@typescript-eslint/no-var-requires': 'warn',
     'react/react-in-jsx-scope': 'off',
+
+    '@next/next/no-img-element': 'off',
   },
 };
