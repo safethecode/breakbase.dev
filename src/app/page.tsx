@@ -4,8 +4,6 @@ import ky from 'ky';
 import Balancer from 'react-wrap-balancer';
 import JSConfetti from 'js-confetti';
 
-import useDebounce from '@/hooks/useDebounce';
-
 import * as style from './page.css';
 
 import { useState, useEffect, useRef } from 'react';
@@ -25,46 +23,50 @@ export default function Examples() {
   const [loading, setLoading] = useState(false);
 
   const newSubscriber = async () => {
-    setLoading(true);
-
     const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
     if (subscribe.email && !emailRegex.test(subscribe.email)) {
       toast.error('올바른 이메일 주소를 입력해주세요!');
     } else {
-      if (subscribe.name && subscribe.email) {
-        confettiRef.current?.addConfetti({
-          emojis: ['😘', '🥰', '❤️', '✅', '🎉'],
-          emojiSize: 150,
-          confettiNumber: 30,
-        });
+      if (subscribe.name && subscribe.email && !loading) {
+        setLoading(true);
 
-        toast.success('구독해주셔서 감사해요 🙈 매주 월요일에 뵐게요 +_+');
-
-        await ky.post('/api/subscribe/', {
-          json: {
-            message: newSubscribeSlackMessage({
-              authorName: subscribe.name,
-              authorEmail: subscribe.email,
-            }),
-            userInfo: {
-              name: subscribe.name,
-              email: subscribe.email,
+        await ky
+          .post('/api/subscribe/', {
+            json: {
+              message: newSubscribeSlackMessage({
+                authorName: subscribe.name,
+                authorEmail: subscribe.email,
+              }),
+              userInfo: {
+                name: subscribe.name,
+                email: subscribe.email,
+              },
             },
-          },
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
-        localStorage.setItem('subscribed', 'true');
-        setLoading(false);
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          })
+          .then(() => {
+            setTimeout(() => {
+              confettiRef.current?.addConfetti({
+                emojis: ['😘', '🥰', '❤️', '✅', '🎉'],
+                emojiSize: 150,
+                confettiNumber: 30,
+              });
+
+              toast.success(
+                '구독해주셔서 감사해요 🙈 매주 월요일에 뵐게요 +_+',
+              );
+
+              setLoading(false);
+            }, 2000);
+          });
       } else {
         toast.error('이름과 이메일 주소를 입력해주세요!');
       }
     }
   };
-
-  const debouncedNewSubscriber = useDebounce(newSubscriber, 1000);
 
   const handleSubscribe = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -128,12 +130,8 @@ export default function Examples() {
           required
           onChange={handleSubscribe}
         />
-        <Button
-          variant="primary"
-          onClick={debouncedNewSubscriber}
-          disabled={loading}
-        >
-          구독하기
+        <Button variant="primary" onClick={newSubscriber} disabled={loading}>
+          {loading ? '구독 중...' : '구독하기'}
         </Button>
         <footer className={style.footer}>
           <p>
