@@ -110,6 +110,7 @@ export default function Examples() {
           <Balancer as="span">
             업무에 집중해야 하는 개발자를 위한 뉴스레터
           </Balancer>
+          <ul className={style.list}>현재 233명 개발자와 함께하고 있어요 🚀</ul>
         </h1>
         <MondayCount />
         <Card onClick={handleComingSoon} />

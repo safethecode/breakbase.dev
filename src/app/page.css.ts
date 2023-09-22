@@ -74,3 +74,19 @@ export const anchor = style({
   marginLeft: '4px',
   color: '#fff',
 });
+
+export const list = style({
+  display: 'flex',
+  alignItems: 'center',
+  width: 'fit-content',
+  height: '32px',
+  listStyle: 'none',
+  fontSize: '12px',
+  fontWeight: 500,
+  color: '#888',
+  borderRadius: '999px',
+  boxShadow: 'inset 0 0 0 1px #333',
+  backgroundColor: '#111',
+  padding: '0 24px',
+  gap: '8px',
+});
