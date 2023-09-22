@@ -17,7 +17,6 @@ export const heroHeader = style({
   fontWeight: 800,
   textAlign: 'center',
   lineHeight: '56px',
-  maxWidth: '370px',
   gap: '8px',
   color: '#fff',
 });
@@ -29,7 +28,6 @@ export const pageSection = style({
   fontSize: '36px',
   fontWeight: 800,
   textAlign: 'center',
-  maxWidth: '370px',
   gap: '8px',
   padding: '16px 0',
 });
