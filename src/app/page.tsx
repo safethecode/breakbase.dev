@@ -112,7 +112,7 @@ export default function Examples() {
           </Balancer>
           <ul className={style.list}>현재 233명 개발자와 함께하고 있어요 🚀</ul>
         </h1>
-        <MondayCount />
+        {/* <MondayCount /> */}
         <Card onClick={handleComingSoon} />
         <h1 className={style.heroHeader}>
           <span className={style.heroHeaderLabel}>구독하기</span>
