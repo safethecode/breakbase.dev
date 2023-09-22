@@ -14,6 +14,14 @@ export const BebasNenuFontStyle = Bebas_Neue({
 });
 
 export const PretendardFontStyle = localFont({
+  variable: '--font-pretendard',
   src: '../../public/_static/fonts/PretendardVariable.woff2',
   display: 'swap',
+});
+
+export const JalnanFontStyle = localFont({
+  variable: '--font-jalnan',
+  src: '../../public/_static/fonts/Jalnan.ttf',
+  display: 'swap',
+  weight: '400',
 });
