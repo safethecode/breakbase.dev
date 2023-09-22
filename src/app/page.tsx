@@ -4,14 +4,12 @@ import ky from 'ky';
 import Balancer from 'react-wrap-balancer';
 import JSConfetti from 'js-confetti';
 
-import useDebounce from '@/hooks/useDebounce';
-
 import * as style from './page.css';
 
 import { useState, useEffect, useRef } from 'react';
 import { Toaster, toast } from 'sonner';
 import { newSubscribeSlackMessage } from '@/contents';
-import { Button, Card, MondayCount } from '@/components';
+import { Button, Card } from '@/components';
 import { JalnanFontStyle } from '@/styles';
 
 export default function Examples() {
@@ -21,6 +19,8 @@ export default function Examples() {
     name: '',
     email: '',
   });
+
+  const [count, setCount] = useState(0);
 
   const [loading, setLoading] = useState(false);
 
@@ -89,6 +89,19 @@ export default function Examples() {
   useEffect(() => {
     (confettiRef.current as JSConfetti) = new JSConfetti();
   }, []);
+
+  useEffect(() => {
+    const fetchCount = async () => {
+      await ky
+        .get('/api/count/')
+        .then((res) => res.json())
+        .then((res) => {
+          setCount((res as any).count);
+        });
+    };
+
+    fetchCount();
+  }, []);
   return (
     <main className={style.wrap}>
       <div className={style.inner}>
@@ -127,7 +140,9 @@ export default function Examples() {
             지금 구독해서 새로운 소식을 받아보세요
           </span>
         </h1>
-        <ul className={style.list}>현재 233명 개발자와 함께하고 있어요 🚀</ul>
+        <ul className={style.list}>
+          현재 {count}명 개발자와 함께하고 있어요 🚀
+        </ul>
         <input
           name="name"
           className={style.input}
