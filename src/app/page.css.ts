@@ -22,6 +22,18 @@ export const heroHeader = style({
   color: '#fff',
 });
 
+export const pageSection = style({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  fontSize: '36px',
+  fontWeight: 800,
+  textAlign: 'center',
+  maxWidth: '370px',
+  gap: '8px',
+  padding: '16px 0',
+});
+
 export const heroHeaderLabel = style({
   display: 'flex',
   alignItems: 'center',
@@ -31,6 +43,23 @@ export const heroHeaderLabel = style({
   fontWeight: 700,
   color: 'rgb(255, 146, 67)',
   gap: '8px',
+});
+
+export const heroHeaderTitle = style({
+  display: 'flex',
+  alignItems: 'center',
+  fontSize: '20px',
+  textAlign: 'center',
+  fontFamily: 'var(--font-jalnan)',
+  fontWeight: 700,
+  color: 'rgb(255, 146, 67)',
+  gap: '4px',
+});
+
+export const heroHeaderDescription = style({
+  fontSize: '14px',
+  fontWeight: 500,
+  color: '#888',
 });
 
 export const inner = style({

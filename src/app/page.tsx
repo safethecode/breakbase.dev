@@ -112,8 +112,20 @@ export default function Examples() {
           </Balancer>
         </h1>
         <Card onClick={handleComingSoon} />
-        <h1 className={style.heroHeader}>
-          <span className={style.heroHeaderLabel}>구독하기</span>
+        <h1 className={style.pageSection}>
+          <span className={style.heroHeaderTitle}>
+            뉴스레터는 열려있어요
+            <img
+              src="/_static/icon-waving-hand.png"
+              width={20}
+              height={20}
+              alt="icon-waving-hand"
+              style={{ marginBottom: 4 }}
+            />
+          </span>
+          <span className={style.heroHeaderDescription}>
+            지금 구독해서 새로운 소식을 받아보세요
+          </span>
         </h1>
         <ul className={style.list}>현재 233명 개발자와 함께하고 있어요 🚀</ul>
         <input
