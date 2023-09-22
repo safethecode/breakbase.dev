@@ -4,13 +4,15 @@ import ky from 'ky';
 import Balancer from 'react-wrap-balancer';
 import JSConfetti from 'js-confetti';
 
+import useDebounce from '@/hooks/useDebounce';
+
 import * as style from './page.css';
 
 import { useState, useEffect, useRef } from 'react';
 import { Toaster, toast } from 'sonner';
 import { newSubscribeSlackMessage } from '@/contents';
 import { Button, Card, MondayCount } from '@/components';
-import useDebounce from '@/hooks/useDebounce';
+import { JalnanFontStyle } from '@/styles';
 
 export default function Examples() {
   const confettiRef = useRef<JSConfetti>(null);
@@ -83,7 +85,12 @@ export default function Examples() {
     <main className={style.wrap}>
       <div className={style.inner}>
         <h1 className={style.heroHeader}>
-          <span className={style.heroHeaderLabel}>
+          <span
+            className={`
+              ${style.heroHeaderLabel}
+              ${JalnanFontStyle.className}
+            `}
+          >
             <img
               src="/_static/icon-pizza.png"
               width={24}
@@ -99,7 +106,7 @@ export default function Examples() {
         <MondayCount />
         <Card onClick={handleComingSoon} />
         <h1 className={style.heroHeader}>
-          <span className={style.heroHeaderLabel}>상시 모집 중</span>
+          <span className={style.heroHeaderLabel}>구독하기</span>
         </h1>
         <input
           name="name"
