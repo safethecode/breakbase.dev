@@ -1,9 +1,12 @@
 import { style } from '@vanilla-extract/css';
 
 export const count = style({
-  fontSize: '24px',
-  fontWeight: 600,
+  fontSize: '32px',
+  fontWeight: 700,
+  WebkitTextFillColor: 'transparent',
   textAlign: 'center',
-  color: 'rgba(255, 255, 255, 0.5)',
-  marginBottom: '8px',
+  backgroundImage:
+    'linear-gradient(90deg, rgba(255, 255, 255, 0) 10%, rgb(255, 146, 67) 50%, rgba(255, 255, 255, 0) 90%)',
+  WebkitBackgroundClip: 'text',
+  color: 'transparent',
 });
