@@ -4,6 +4,8 @@ import ky from 'ky';
 import Balancer from 'react-wrap-balancer';
 import JSConfetti from 'js-confetti';
 
+import useDebounce from '@/hooks/useDebounce';
+
 import * as style from './page.css';
 
 import { useState, useEffect, useRef } from 'react';
@@ -61,6 +63,10 @@ export default function Examples() {
 
               setLoading(false);
             }, 2000);
+          })
+          .catch(() => {
+            toast.error('이미 구독하셨어요! 🙈');
+            setLoading(false);
           });
       } else {
         toast.error('이름과 이메일 주소를 입력해주세요!');
