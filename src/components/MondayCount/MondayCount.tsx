@@ -11,11 +11,21 @@ export const MondayCount = () => {
   const nextMonday = useMemo(() => {
     const now = new Date();
     const daysUntilMonday = 1 - now.getDay();
-    if (daysUntilMonday <= 0) {
+
+    let hoursUntilMonday = 10 - now.getHours();
+
+    if (
+      daysUntilMonday <= 0 ||
+      (daysUntilMonday === 0 && hoursUntilMonday <= 0)
+    ) {
       now.setDate(now.getDate() + 7);
+      hoursUntilMonday = 10;
     }
+
     now.setDate(now.getDate() + daysUntilMonday);
-    return new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    now.setHours(hoursUntilMonday, 0, 0, 0);
+
+    return now;
   }, []);
 
   useEffect(() => {
