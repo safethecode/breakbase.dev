@@ -26,51 +26,61 @@ export default function Examples() {
 
   const newSubscriber = async () => {
     const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+    const { name, email } = subscribe;
 
-    if (subscribe.email && !emailRegex.test(subscribe.email)) {
+    if (!name || !email) {
+      toast.error('이름과 이메일 주소를 입력해주세요!');
+      return;
+    }
+
+    if (!emailRegex.test(email)) {
       toast.error('올바른 이메일 주소를 입력해주세요!');
-    } else {
-      if (subscribe.name && subscribe.email && !loading) {
-        setLoading(true);
+      return;
+    }
 
-        await ky
-          .post('/api/subscribe/', {
-            json: {
-              message: newSubscribeSlackMessage({
-                authorName: subscribe.name,
-                authorEmail: subscribe.email,
-              }),
-              userInfo: {
-                name: subscribe.name,
-                email: subscribe.email,
-              },
-            },
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          })
-          .then(() => {
-            setTimeout(() => {
-              confettiRef.current?.addConfetti({
-                emojis: ['😘', '🥰', '❤️', '✅', '🎉'],
-                emojiSize: 150,
-                confettiNumber: 30,
-              });
+    if (loading) {
+      return;
+    }
 
-              toast.success(
-                '구독해주셔서 감사해요 🙈 매주 월요일에 뵐게요 +_+',
-              );
+    setLoading(true);
 
-              setLoading(false);
-            }, 2000);
-          })
-          .catch(() => {
-            toast.error('이미 구독하셨어요! 🙈');
-            setLoading(false);
-          });
+    try {
+      const response = await ky.post('/api/subscribe/', {
+        json: {
+          message: newSubscribeSlackMessage({
+            authorName: name,
+            authorEmail: email,
+          }),
+          userInfo: {
+            name,
+            email,
+          },
+        },
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      await response.text();
+
+      setTimeout(() => {
+        confettiRef.current?.addConfetti({
+          emojis: ['😘', '🥰', '❤️', '✅', '🎉'],
+          emojiSize: 150,
+          confettiNumber: 30,
+        });
+
+        toast.success('구독해주셔서 감사해요 🙈 매주 월요일에 뵐게요 +_+');
+        setLoading(false);
+      }, 1000);
+    } catch (error: any) {
+      if (error.response && error.response.status === 409) {
+        toast.error('이미 구독하셨어요! 🙈');
       } else {
-        toast.error('이름과 이메일 주소를 입력해주세요!');
+        console.error('구독 중에 오류 발생:', error);
+        toast.error('구독 과정에서 문제가 발생했어요. 다시 시도해주세요.');
       }
+      setLoading(false);
     }
   };
 
