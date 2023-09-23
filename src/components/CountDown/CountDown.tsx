@@ -1,7 +1,7 @@
-import * as style from './MondayCount.css';
+import * as style from './CountDown.css';
 import { useState, useEffect, useMemo } from 'react';
 
-export const MondayCount = () => {
+export const CountDown = () => {
   const [timeLeft, setTimeLeft] = useState({
     hours: 0,
     minutes: 0,
