@@ -92,16 +92,20 @@ export default function Examples() {
 
   useEffect(() => {
     const fetchCount = async () => {
-      await ky
-        .get('/api/count/')
-        .then((res) => res.json())
-        .then((res) => {
-          setCount((res as any).count);
-        });
+      try {
+        const response = await ky.get('/api/count/');
+        const data: {
+          count: number;
+        } = await response.json();
+        setCount(data.count);
+      } catch (error) {
+        console.error(error);
+      }
     };
 
     fetchCount();
   }, []);
+
   return (
     <main className={style.wrap}>
       <div className={style.inner}>
