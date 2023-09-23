@@ -20,9 +20,9 @@
     "@vercel/analytics": "^1.0.2",
     "js-confetti": "^0.11.0",
     "ky": "^1.0.1",
-    "next": "13.4.12",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "next": "^13.5.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-wrap-balancer": "^1.1.0",
     "resend": "^1.1.0",
     "sonner": "^1.0.3"
