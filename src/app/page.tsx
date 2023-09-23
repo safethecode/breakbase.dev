@@ -154,9 +154,7 @@ export default function Examples() {
             지금 구독해서 새로운 소식을 받아보세요
           </span>
         </h1>
-        <ul className={style.list}>
-          현재 {count}명 개발자와 함께하고 있어요 🚀
-        </ul>
+        <p className={style.list}>현재 {count}명 개발자와 함께하고 있어요 🚀</p>
         <input
           name="name"
           className={style.input}
