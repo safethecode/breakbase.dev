@@ -1,5 +1,5 @@
 import * as style from './CountDown.css';
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 
 export const CountDown = () => {
   const [timeLeft, setTimeLeft] = useState({
@@ -8,29 +8,33 @@ export const CountDown = () => {
     seconds: 0,
   });
 
-  const nextMonday = useMemo(() => {
+  const getNextMonday = () => {
     const now = new Date();
-    const daysUntilMonday = 1 - now.getDay();
+    let daysUntilMonday = 1 - now.getDay();
 
-    let hoursUntilMonday = 10 - now.getHours();
+    const hoursUntilMonday = 10 - now.getHours();
 
     if (
-      daysUntilMonday <= 0 ||
+      daysUntilMonday < 0 ||
       (daysUntilMonday === 0 && hoursUntilMonday <= 0)
     ) {
-      now.setDate(now.getDate() + 7);
-      hoursUntilMonday = 10;
+      daysUntilMonday += 7;
     }
 
     now.setDate(now.getDate() + daysUntilMonday);
-    now.setHours(hoursUntilMonday, 0, 0, 0);
+    now.setHours(10, 0, 0, 0);
 
     return now;
-  }, []);
+  };
 
   useEffect(() => {
     const updateCount = () => {
       const now = new Date();
+      const nextMonday = getNextMonday();
+
+      if (now > nextMonday) {
+        nextMonday.setDate(nextMonday.getDate() + 7);
+      }
 
       const timeUntilNextMonday = nextMonday.getTime() - now.getTime();
       const secondsUntilNextMonday = Math.floor(timeUntilNextMonday / 1000);
@@ -47,7 +51,7 @@ export const CountDown = () => {
     return () => {
       clearInterval(timer);
     };
-  }, [nextMonday]);
+  }, []);
 
   return (
     <span className={style.count}>
