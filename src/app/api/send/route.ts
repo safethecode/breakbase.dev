@@ -3,30 +3,25 @@ import { NextRequest } from 'next/server';
 import { supabase } from '@/utils/supabase';
 import { FitzzaOnboarding } from '@/contents/onboarding';
 
-export async function GET(request: NextRequest) {
-  const SLACK_WEBHOOK_URL = process.env.SLACK_RESEND_WORKSPACE_KEY as string;
-
-  const resend = new Resend(process.env.RESEND_API_KEY as string);
-
-  const { data: supabaseGetAllUser }: any = await supabase
-    .from('subscribe_users')
-    .select('*');
-
-  for (const user of supabaseGetAllUser) {
-    await resend.emails.send({
-      from: '핏짜 <no-reply@fitzza.xyz>',
-      to: user.email,
-      subject: `${user.name}님! 핏짜에서 감사 인사 드려요 🙈`,
-      react: FitzzaOnboarding({
-        userFirstname: user.name,
-      }),
-    });
-  }
-
-  return new Response('Email sent', {
-    status: 200,
-  });
-
+export async function POST(request: NextRequest) {
+  // const SLACK_WEBHOOK_URL = process.env.SLACK_RESEND_WORKSPACE_KEY as string;
+  // const resend = new Resend(process.env.RESEND_API_KEY as string);
+  // const { data: supabaseGetAllUser }: any = await supabase
+  //   .from('subscribe_users')
+  //   .select('*');
+  // for (const user of supabaseGetAllUser) {
+  //   await resend.emails.send({
+  //     from: '핏짜 <no-reply@fitzza.xyz>',
+  //     to: user.email,
+  //     subject: `${user.name}님! 핏짜에서 감사 인사 드려요 🙈`,
+  //     react: FitzzaOnboarding({
+  //       userFirstname: user.name,
+  //     }),
+  //   });
+  // }
+  // return new Response('Email sent', {
+  //   status: 200,
+  // });
   // if (duplicateEmail.data.length === 0) {
   //   await fetch(SLACK_WEBHOOK_URL, {
   //     method: 'POST',
