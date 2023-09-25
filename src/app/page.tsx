@@ -180,7 +180,7 @@ export default function Examples() {
         </Button>
         <footer className={style.footer}>
           <p>
-            본 뉴스레터는 2023년 09월 25일부터 오전 10시를 기준으로 월요일마다
+            본 뉴스레터는 2023년 10월 02일부터 오전 10시를 기준으로 월요일마다
             발송되는 뉴스레터입니다. 기술적인 부분과 기획, 디자인, 스타트업 등
             다양한 주제로 뉴스레터는 발송됩니다. 뉴스레터 관련 문의는
             <a className={style.anchor} href="mailto:support@aybridge.co">
