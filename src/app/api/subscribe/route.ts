@@ -1,7 +1,8 @@
 import { Resend } from 'resend';
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
 import { supabase } from '@/utils/supabase';
 import KoalaWelcomeEmail from '@/contents/welcome';
+import { FitzzaNews } from '@/contents/news';
 
 export async function POST(request: NextRequest) {
   const SLACK_WEBHOOK_URL = process.env.SLACK_WEBHOOK_KEY as string;
@@ -36,6 +37,12 @@ export async function POST(request: NextRequest) {
       to: requestBody.userInfo.email,
       subject: `${requestBody.userInfo.name}님! 핏짜에 오신 것을 환영합니다 🍕`,
       react: KoalaWelcomeEmail({ userFirstname: requestBody.userInfo.name }),
+    });
+    await resend.emails.send({
+      from: '핏짜 <no-reply@fitzza.xyz>',
+      to: requestBody.userInfo.email,
+      subject: `똑똑똑.. ${requestBody.userInfo.name}님! 첫번째 뉴스레터가 배달되었어요! 📦`,
+      react: FitzzaNews({ userFirstname: requestBody.userInfo.name }),
     });
     return new Response('Email sent', {
       status: 200,
