@@ -12,7 +12,7 @@ export async function POST(request: NextRequest) {
   const requestBody = await request.json();
 
   const duplicateEmail: any = await supabase
-    .from('subscribe_users')
+    .from('202309_fitzza_users')
     .select('email')
     .eq('email', requestBody.userInfo.email);
 
@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
       body: JSON.stringify(requestBody.message),
     });
     await supabase
-      .from('subscribe_users')
+      .from('202309_fitzza_users')
       .insert([
         {
           email: requestBody.userInfo.email,
