@@ -67,6 +67,14 @@ export const heroHeaderDescription = style({
   color: '#888',
 });
 
+export const underline = style({
+  fontSize: '14px',
+  fontWeight: 500,
+  textDecoration: 'underline',
+  color: '#888',
+  cursor: 'pointer',
+});
+
 export const inner = style({
   display: 'flex',
   flexDirection: 'column',

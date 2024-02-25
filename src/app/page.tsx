@@ -6,6 +6,7 @@ import JSConfetti from 'js-confetti';
 
 import * as style from './page.css';
 
+import { useRouter } from 'next/navigation';
 import { useState, useEffect, useRef } from 'react';
 import { Toaster, toast } from 'sonner';
 import { newSubscribeSlackMessage } from '@/contents';
@@ -13,6 +14,7 @@ import { Button, Card } from '@/components';
 import { JalnanFontStyle } from '@/styles';
 
 export default function Examples() {
+  const router = useRouter();
   const confettiRef = useRef<JSConfetti>(null);
 
   const [subscribe, setSubscribe] = useState({
@@ -96,6 +98,10 @@ export default function Examples() {
     toast.loading('이전 뉴스레터들을 보면서 조금만 기다려주세요 🙈');
   };
 
+  const handleBusinessClick = () => {
+    router.push('/external/business');
+  };
+
   useEffect(() => {
     (confettiRef.current as JSConfetti) = new JSConfetti();
   }, []);
@@ -154,6 +160,12 @@ export default function Examples() {
           </span>
           <span className={style.heroHeaderDescription}>
             지금 구독해서 새로운 소식을 받아보세요
+          </span>
+          <span
+            className={(style.heroHeaderDescription, style.underline)}
+            onClick={handleBusinessClick}
+          >
+            광고/제휴 요청 ✉️
           </span>
         </h1>
         <p className={style.list}>현재 {count}명 개발자와 함께하고 있어요 🚀</p>
