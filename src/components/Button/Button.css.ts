@@ -31,7 +31,9 @@ export const buttonVariant = styleVariants({
   outline: [
     button,
     {
-      color: 'white',
+      color: '#888',
+      fontSize: '14px',
+      fontWeight: 600,
       backgroundColor: '#11111190',
       boxShadow: 'inset 0 0 0 1px #222',
       borderRadius: '8px',
