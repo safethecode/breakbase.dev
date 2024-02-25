@@ -93,7 +93,7 @@ export default function Examples() {
   };
 
   const handleComingSoon = () => {
-    toast.loading('아직 준비 중이에요! 조금만 기다려주세요 🙈');
+    toast.loading('이전 뉴스레터들을 보면서 조금만 기다려주세요 🙈');
   };
 
   useEffect(() => {
@@ -135,7 +135,9 @@ export default function Examples() {
             핏짜
           </span>
           <Balancer as="span">
-            업무에 집중해야 하는 개발자를 위한 뉴스레터
+            업무에 집중해야 하는
+            <br />
+            개발자를 위한 뉴스레터
           </Balancer>
         </h1>
         <Card onClick={handleComingSoon} />

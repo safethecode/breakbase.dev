@@ -19,6 +19,13 @@ export const heroHeader = style({
   lineHeight: '56px',
   gap: '8px',
   color: '#fff',
+
+  '@media': {
+    '(max-width: 768px)': {
+      fontSize: '28px',
+      lineHeight: '40px',
+    },
+  },
 });
 
 export const pageSection = style({
