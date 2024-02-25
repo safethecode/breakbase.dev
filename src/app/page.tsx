@@ -102,6 +102,10 @@ export default function Examples() {
     router.push('/external/business');
   };
 
+  const handleArchiveClick = () => {
+    router.push('/external/article');
+  };
+
   useEffect(() => {
     (confettiRef.current as JSConfetti) = new JSConfetti();
   }, []);
@@ -147,6 +151,9 @@ export default function Examples() {
           </Balancer>
         </h1>
         <Card onClick={handleComingSoon} />
+        <Button variant="outline" onClick={handleArchiveClick}>
+          이전 뉴스레터 확인하기 👉
+        </Button>
         <h1 className={style.pageSection}>
           <span className={style.heroHeaderTitle}>
             뉴스레터는 열려있어요
