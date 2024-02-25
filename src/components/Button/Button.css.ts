@@ -32,11 +32,12 @@ export const buttonVariant = styleVariants({
     button,
     {
       color: 'white',
-      backgroundColor: 'transparent',
-      boxShadow: 'inset 0 0 0 2px hsla(0, 0%, 100%, .5)',
+      backgroundColor: '#11111190',
+      boxShadow: 'inset 0 0 0 1px #222',
+      borderRadius: '8px',
 
       ':hover': {
-        backgroundColor: 'hsla(0, 0%, 12%, 1)',
+        backgroundColor: '#111',
       },
     },
   ],
