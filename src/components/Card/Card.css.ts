@@ -4,7 +4,7 @@ export const wrap = style({
   display: 'flex',
   flexDirection: 'column',
   width: '100%',
-  borderRadius: '16px',
+  borderRadius: '8px',
   backgroundColor: '#11111190',
   boxShadow: 'inset 0 0 0 1px #222',
   padding: '24px',
