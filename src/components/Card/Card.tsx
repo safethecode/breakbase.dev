@@ -8,7 +8,7 @@ interface CardProps {
 export const Card = ({ onClick }: CardProps) => {
   return (
     <article className={style.wrap} onClick={onClick}>
-      <span className={style.cardLabel}>두번째 뉴스레터</span>
+      <span className={style.cardLabel}>세번째 뉴스레터</span>
       <CountDown />
     </article>
   );
